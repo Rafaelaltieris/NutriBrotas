@@ -28,34 +28,32 @@
 
             <nav class="space-y-4">
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center font-semibold hover:text-green-600 {{ request()->routeIs('dashboard') ? 'text-green-800' : 'text-gray-700' }}">
-                    <i class="fa-solid fa-chart-simple mr-3 {{ request()->routeIs('dashboard') ? 'text-green-800' : 'text-gray-700' }}"></i>
+                    class="group flex items-center font-semibold {{ request()->routeIs('dashboard') ? 'text-green-800' : 'text-gray-700 hover:text-green-700' }}">
+                    <i class="fa-solid fa-chart-simple mr-3 {{ request()->routeIs('dashboard') ? 'text-green-800' : 'text-gray-700 group-hover:text-green-700' }}"></i>
                     Dashboard
                 </a>
 
                 <a href="{{ route('turmas.index') }}"
-                    class="flex items-center hover:text-green-700 {{ request()->routeIs('turmas.*') ? 'text-green-800 font-semibold' : 'text-gray-700' }}">
-                    <i class="fa-solid fa-users mr-2 {{ request()->routeIs('turmas.*') ? 'text-green-800' : 'text-gray-700' }}"></i>
+                    class="group flex items-center font-semibold {{ request()->routeIs('turmas.*') ? 'text-green-800' : 'text-gray-700 hover:text-green-700' }}">
+                    <i class="fa-solid fa-users mr-2 {{ request()->routeIs('turmas.*') ? 'text-green-800' : 'text-gray-700 group-hover:text-green-700' }}"></i>
                     Turmas
                 </a>
 
                 <a href="{{ route('relatorios.index') }}"
-                    class="flex items-center hover:text-green-700 {{ request()->routeIs('relatorios.*') ? 'text-green-800 font-semibold' : 'text-gray-700' }}">
-                    <i class="fa-solid fa-file-lines mr-3 {{ request()->routeIs('relatorios.*') ? 'text-green-800' : 'text-gray-700' }}"></i>
+                    class="group flex items-center font-semibold {{ request()->routeIs('relatorios.*') ? 'text-green-800' : 'text-gray-700 hover:text-green-700' }}">
+                    <i class="fa-solid fa-file-lines mr-3 {{ request()->routeIs('relatorios.*') ? 'text-green-800' : 'text-gray-700 group-hover:text-green-700' }}"></i>
                     Relatórios
                 </a>
 
                 <a href="{{ route('desperdicios.semana') }}"
-                    class="flex items-center hover:text-green-700 {{ request()->routeIs('desperdicios.*') ? 'text-green-800 font-semibold' : 'text-gray-700' }}">
-                    <i class="fa-solid fa-trash mr-2 {{ request()->routeIs('desperdicios.*') ? 'text-green-800' : 'text-gray-700' }}"></i>
-                    Desperdicios
+                    class="group flex items-center font-semibold {{ request()->routeIs('desperdicios.*') ? 'text-green-800' : 'text-gray-700 hover:text-green-700' }}">
+                    <i class="fa-solid fa-trash mr-2 {{ request()->routeIs('desperdicios.*') ? 'text-green-800' : 'text-gray-700 group-hover:text-green-700' }}"></i>
+                    Desperdícios
                 </a>
-
 
                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="flex items-center text-red-600 hover:text-red-800 mt-6 bg-transparent border-none p-0 cursor-pointer">
-
                         <i class="fa-solid fa-right-from-bracket mr-2"></i> Sair
                     </button>
                 </form>
