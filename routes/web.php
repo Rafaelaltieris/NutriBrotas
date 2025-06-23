@@ -8,9 +8,10 @@ use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\RefeicaoController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Rotas públicas
@@ -23,7 +24,11 @@ Route::get('/', function () {
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-
+Route::get('/verificar-email', function (Request $request) {
+    return response()->json([
+        'existe' => User::where('email', $request->email)->exists(),
+    ]);
+});
 /*
 |--------------------------------------------------------------------------
 | Rotas protegidas por autenticação

@@ -30,9 +30,13 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'email.unique' => 'Este e-mail já está em uso.',
+            'password.min' => 'A senha deve ter pelo menos :min caracteres.',
+            'confirmed' => 'A confirmação da senha não confere.',
         ]);
 
         $user = User::create([
@@ -46,6 +50,6 @@ class RegisteredUserController extends Controller
         // Não faz login automático mais
         // Auth::login($user);
 
-        return redirect(route('login'))->with('success', 'Conta criada! Faça login para continuar.');
+        return redirect(route('login'))->with('success', 'Conta criada com sucesso! Faça login para continuar.');
     }
 }
