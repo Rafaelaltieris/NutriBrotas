@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/confirmDelete.js') }}"></script>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/icon.svg') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 
@@ -28,34 +28,31 @@
 
             <nav class="space-y-4">
                 <a href="{{ route('dashboard') }}" class="flex items-center text-green-800 font-semibold hover:text-green-600">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M3 12h18M3 6h18M3 18h18" />
-                    </svg>
+                    <i class="fa-solid fa-chart-simple mr-3"></i>
                     Dashboard
                 </a>
 
                 <a href="{{ route('turmas.index') }}" class="flex items-center text-gray-700 hover:text-green-700">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87m6-7a4 4 0 11-8 0 4 4 0 018 0zm6 4a4 4 0 100-8 4 4 0 000 8z" />
-                    </svg>
-                    Turmas
+
+                    <i class="fa-solid fa-users mr-2"></i> Turmas
+
                 </a>
 
                 <a href="{{ route('relatorios.index') }}" class="flex items-center text-gray-700 hover:text-green-700">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M3 3v18h18V3H3z" />
-                        <path d="M9 17V7l8 5-8 5z" />
-                    </svg>
-                    Relatórios
+
+                    <i class="fa-solid fa-file-lines mr-3"></i> Relatórios
+                </a>
+
+                <a href="{{ route('desperdicios.semana') }}" class="flex items-center text-gray-700 hover:text-green-700">
+
+                    <i class="fa-solid fa-trash mr-2"></i> Desperdicios
                 </a>
 
                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="flex items-center text-red-600 hover:text-red-800 mt-6 bg-transparent border-none p-0 cursor-pointer">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m0-8V7a2 2 0 114 0v1" />
-                        </svg>
-                        Sair
+
+                       <i class="fa-solid fa-right-from-bracket mr-2"></i> Sair
                     </button>
                 </form>
             </nav>

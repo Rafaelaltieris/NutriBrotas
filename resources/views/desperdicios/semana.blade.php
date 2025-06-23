@@ -63,7 +63,9 @@
 
                     @foreach(\Carbon\CarbonPeriod::create($inicioSemana, $fimSemana) as $dia)
                     @php
-                    $desperdicio = $turma->desperdicios->firstWhere('data', $dia->format('Y-m-d'));
+                    $desperdicio = $turma->desperdicios->first(function ($item) use ($dia) {
+                    return \Carbon\Carbon::parse($item->data)->isSameDay($dia);
+                    });
                     @endphp
                     <td class="border px-4 py-2">
                         @if($desperdicio)

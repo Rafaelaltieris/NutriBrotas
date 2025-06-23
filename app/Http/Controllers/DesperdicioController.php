@@ -63,7 +63,7 @@ class DesperdicioController extends Controller
         $offset = (int) $request->query('semana', 0); // semana atual por padrão
 
         $inicioSemana = now()->startOfWeek(Carbon::MONDAY)->addWeeks($offset);
-        $fimSemana = now()->endOfWeek(Carbon::MONDAY)->addWeeks($offset)->subDays(3);
+        $fimSemana = now()->endOfWeek(Carbon::MONDAY)->addWeeks($offset)->subDays(-4);
 
         $turmas = Turma::with(['desperdicios' => function ($query) use ($inicioSemana, $fimSemana) {
             $query->whereBetween('data', [$inicioSemana, $fimSemana]);
