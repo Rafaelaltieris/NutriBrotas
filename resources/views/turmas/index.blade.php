@@ -48,7 +48,7 @@
                 </div>
 
                 <h2 class="text-xl font-bold text-green-700">{{ $turma->nome }}</h2>
-                <p class="text-sm text-gray-500 mb-3">Turno: {{ $turma->turno }}</p>
+                <p class="text-sm text-gray-500 mb-3">Período: {{ $turma->turno }}</p>
                 <img src="{{ route('turmas.qrcode', ['turma' => $turma->id]) }}"
                     alt="QR Code da turma {{ $turma->nome }}" class="w-48 h-48 mb-3" />
                 <a href="{{ route('desperdicios.create', $turma->id) }}"

@@ -1,39 +1,61 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+    <div class="w-full max-w-md bg-white rounded-3xl p-8 space-y-6">
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <!-- Logo e título -->
+        <div class="text-center">
+            <img src="{{ asset('images/nutriSesi.png') }}" alt="Logo" class="w-56 h-20 object-contain mx-auto">
+            <h1 class="text-3xl font-semibold text-[#15803d]">Redefinir Senha</h1>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <!-- Formulário -->
+        <form method="POST" action="{{ route('password.store') }}" class="space-y-4">
+            @csrf
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <!-- Token escondido -->
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
+            <!-- Email -->
+            <div class="relative">
+                <label for="email" class="block text-sm text-gray-600 mb-1">Email</label>
+                <div class="flex items-center px-4 py-2 border rounded-full bg-[#f9f9f9]">
+                    <i class="fa-solid fa-envelope text-green-600 mr-2"></i>
+                    <input id="email" name="email" type="email" required autofocus
+                        value="{{ old('email', $request->email) }}"
+                        class="w-full bg-transparent border-none text-gray-700 placeholder:text-gray-400 focus:outline-none"
+                        placeholder="seu@email.com">
+                </div>
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+            <!-- Nova Senha -->
+            <div class="relative">
+                <label for="password" class="block text-sm text-gray-600 mb-1">Nova Senha</label>
+                <div class="flex items-center px-4 py-2 border rounded-full bg-[#f9f9f9]">
+                    <i class="fa-solid fa-lock text-green-600 mr-2"></i>
+                    <input id="password" name="password" type="password" required
+                        class="w-full bg-transparent border-none text-gray-700 placeholder:text-gray-400 focus:outline-none"
+                        placeholder="••••••••">
+                </div>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
+            <!-- Confirmar Senha -->
+            <div class="relative">
+                <label for="password_confirmation" class="block text-sm text-gray-600 mb-1">Confirmar Senha</label>
+                <div class="flex items-center px-4 py-2 border rounded-full bg-[#f9f9f9]">
+                    <i class="fa-solid fa-lock text-green-600 mr-2"></i>
+                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                        class="w-full bg-transparent border-none text-gray-700 placeholder:text-gray-400 focus:outline-none"
+                        placeholder="••••••••">
+                </div>
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+
+            <!-- Botão -->
+            <button type="submit"
+                class="w-full py-2 rounded-full bg-[#16a34a] text-white font-semibold hover:bg-[#15803d] transition">
+                Redefinir Senha
+            </button>
+        </form>
+    </div>
 </x-guest-layout>

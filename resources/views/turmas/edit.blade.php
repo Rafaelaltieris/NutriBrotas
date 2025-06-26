@@ -15,7 +15,7 @@
         </div>
 
         <div class="mb-4">
-            <label class="block text-sm font-medium">Turno</label>
+            <label class="block text-sm font-medium">Período</label>
             <input type="text" name="turno" value="{{ old('turno', $turma->turno) }}"
                    class="w-full border-gray-300 rounded p-2 mt-1" required>
         </div>

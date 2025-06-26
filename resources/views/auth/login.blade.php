@@ -17,8 +17,7 @@
             <div class="relative">
                 <label for="email" class="block text-sm text-gray-600 mb-1">Email</label>
                 <div class="flex items-center px-4 py-2 border rounded-full bg-[#f9f9f9]">
-                    <!-- User icon -->
-                    <i class="fa-solid fa-user text-green-600 mr-2"></i>
+                    <i class="fa-solid fa-envelope text-green-600 mr-2"></i>
                     <input id="email" name="email" type="email" required autofocus
                         class="w-full bg-transparent border-none text-gray-700 placeholder:text-gray-400 focus:outline-none"
                         placeholder="seu@email.com">

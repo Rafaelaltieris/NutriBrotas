@@ -42,6 +42,7 @@ class DashboardController extends Controller
             ->groupBy('refeicaos.nome')
             ->get();
 
+
         return view('dashboard', [
             'totalBruto' => $totalBruto,
             'totalProteina' => $totalProteina,

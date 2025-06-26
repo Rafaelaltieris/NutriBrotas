@@ -60,16 +60,31 @@ class DesperdicioController extends Controller
     {
         Carbon::setLocale('pt_BR');
 
-        $offset = (int) $request->query('semana', 0); // semana atual por padrão
+        $offset = (int) $request->query('semana', 0);   // 0 = semana atual
 
-        $inicioSemana = now()->startOfWeek(Carbon::MONDAY)->addWeeks($offset);
-        $fimSemana = now()->endOfWeek(Carbon::MONDAY)->addWeeks($offset)->subDays(-4);
+        // Segunda-feira da semana desejada
+        $inicioSemana = now()
+            ->startOfWeek(Carbon::MONDAY)
+            ->addWeeks($offset);
 
-        $turmas = Turma::with(['desperdicios' => function ($query) use ($inicioSemana, $fimSemana) {
-            $query->whereBetween('data', [$inicioSemana, $fimSemana]);
-        }])->get();
+        // Sexta-feira da mesma semana
+        $fimSemana = $inicioSemana
+            ->copy()          // mantém $inicioSemana intacto
+            ->addDays(4)      // segunda + 4 = sexta
+            ->endOfDay();     // opcional: 23:59:59
 
-        return view('desperdicios.semana', compact('turmas', 'inicioSemana', 'fimSemana', 'offset'));
+        $turmas = Turma::with([
+            'desperdicios' => function ($query) use ($inicioSemana, $fimSemana) {
+                $query->whereBetween('data', [$inicioSemana, $fimSemana]);
+            }
+        ])->get();
+
+        return view('desperdicios.semana', compact(
+            'turmas',
+            'inicioSemana',
+            'fimSemana',
+            'offset'
+        ));
     }
 
     public function edit(Desperdicio $desperdicio)
